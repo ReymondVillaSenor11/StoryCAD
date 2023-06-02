@@ -67,7 +67,7 @@
                              SelectedItem="{x:Bind SceneVm.Setting, Mode=TwoWay, Converter={StaticResource ToStoryElement}}"/>
                         <TextBlock Grid.Column="1" MinWidth="50"/>
                         <editors:SfComboBox IsEditable="True" Header="SceneType" Grid.Column="2" MinWidth="200"
-                                            ItemsSource="{x:Bind SceneVm.SceneTypeList}"
+                                            ItemsSource="{x:Bind SceneVm.SceneTypeList, Mode=OneWay}"
                                             Text="{x:Bind SceneVm.SceneType, Mode=TwoWay}" />
                     </Grid>
                     <Grid Grid.Row="2" HorizontalAlignment="Left" >

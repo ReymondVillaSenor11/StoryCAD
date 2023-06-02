@@ -18,7 +18,15 @@ public class NewRelationshipViewModel : ObservableRecipient
         set => SetProperty(ref _selectedPartner, value);
     }
 
-    public ObservableCollection<string> RelationTypes { get; set; }
+    private ObservableCollection<string> _RelationTypes;
+    /// <summary>
+    /// Presets of possible relationships, i.e mother, farther, etc.
+    /// </summary>
+    public ObservableCollection<string> RelationTypes
+    {
+        get => _RelationTypes;
+        set => SetProperty(ref _RelationTypes, value);
+    }
 
     private string _relationType;
     public string RelationType 
