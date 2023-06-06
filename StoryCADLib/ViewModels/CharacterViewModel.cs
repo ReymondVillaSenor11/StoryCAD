@@ -729,27 +729,14 @@ public class CharacterViewModel : ObservableRecipient, INavigable
         _logger.Log(LogLevel.Info, "Executing AddRelationship command");
         SaveRelationship(CurrentRelationship);
 
-        //Sets up view model
-        NewRelationshipViewModel _vm = new(Model);
-        _vm.RelationTypes.Clear();
-        foreach (string _relationshipType in GlobalData.RelationTypes) { _vm.RelationTypes.Add(_relationshipType); }
-        _vm.ProspectivePartners.Clear(); //Prospective partners are chars who are not in a relationship with this char
-        StoryModel _storyModel = ShellViewModel.GetModel();
-        foreach (StoryElement _character in _storyModel.StoryElements.Characters)
-        {
-            if (_character == _vm.Member) continue;  // Skip me
-            foreach (RelationshipModel _rel in CharacterRelationships)
-            {
-                if (_character == _rel.Partner) goto NextCharacter; // Skip partner
-            }
-            _vm.ProspectivePartners.Add(_character);
-        NextCharacter: ;
-        }
+        // New viewmodel for the relationship
+        NewRelationshipViewModel _vm = Ioc.Default.GetService<NewRelationshipViewModel>();
+        _vm.InitializeNewRelationshipVM();
 
         if (_vm.ProspectivePartners.Count == 0)
         {
             Ioc.Default.GetRequiredService<LogService>().Log(LogLevel.Warn,"There are no prospective partners, not showing AddRelationship Dialog." );
-            Ioc.Default.GetRequiredService<ShellViewModel>().ShowMessage(LogLevel.Warn, "This character already has a relationship with everyone",false);
+            Ioc.Default.GetRequiredService<ShellViewModel>().ShowMessage(LogLevel.Warn, "There are no prospective relationship partners",false);
             return;
         }
 

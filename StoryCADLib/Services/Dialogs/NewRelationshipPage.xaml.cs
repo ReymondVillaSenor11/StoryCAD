@@ -28,7 +28,7 @@ public sealed partial class NewRelationshipPage : Page
     public NewRelationshipPage(NewRelationshipViewModel vm)
     {
         InitializeComponent();
-        RelationTypes = new ObservableCollection<RelationType>();
+        DataContext = vm;
         NewRelVM = vm;
     }
 }

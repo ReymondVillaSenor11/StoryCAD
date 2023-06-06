@@ -174,6 +174,7 @@ public partial class App
                 .AddSingleton<ShellViewModel>()
                 .AddSingleton<OverviewViewModel>()
                 .AddSingleton<CharacterViewModel>()
+                .AddTransient<NewRelationshipViewModel>()
                 .AddSingleton<ProblemViewModel>()
                 .AddSingleton<SettingViewModel>()
                 .AddSingleton<SceneViewModel>()
@@ -185,7 +186,6 @@ public partial class App
                 .AddSingleton<TreeViewSelection>()
                 // Register ContentDialog ViewModels
                 .AddSingleton<NewProjectViewModel>()
-                .AddSingleton<NewRelationshipViewModel>()
                 .AddSingleton<PrintReportDialogVM>()
                 .AddSingleton<NarrativeToolVM>()
                 // Register Tools ViewModels  
